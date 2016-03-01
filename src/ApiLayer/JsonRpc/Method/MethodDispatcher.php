@@ -71,11 +71,11 @@ class MethodDispatcher implements MethodDispatcherInterface
     public function dispatch($methodName, array $arguments = [])
     {
         $methodCollection = $this->getMethodCollection();
-        if (!$methodCollection->has($methodName)) {
-            throw new MethodNotFoundException(sprintf('Method "%s" is not found', $methodName));
-        }
 
         $callable = $methodCollection->get($methodName);
+        if (! is_callable($callable)) {
+            throw new MethodNotFoundException(sprintf('Method "%s" is not found', $methodName));
+        }
 
         $requestObject = $this->argumentMapper->mapToObject($callable, $arguments);
 

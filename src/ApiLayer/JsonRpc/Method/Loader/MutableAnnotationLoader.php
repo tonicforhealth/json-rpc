@@ -73,7 +73,7 @@ class MutableAnnotationLoader implements LoaderInterface
             /** @var Method $methodAnnotation */
             $methodAnnotation = $this->annotationReader->getMethodAnnotation($reflectionMethod, Method::class);
             if ($methodAnnotation instanceof Method) {
-                $methods[$methodAnnotation->name] = [$service, $reflectionMethod->getName()];
+                $methods[$methodAnnotation->name] = [$service, $reflectionMethod->name];
             }
         }
 

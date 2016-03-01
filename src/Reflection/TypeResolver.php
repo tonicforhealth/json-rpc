@@ -43,9 +43,9 @@ class TypeResolver
         $type = $varTag->getType();
 
         $isCollection = false;
-        if (($pos = strpos($type, '[')) !== false) {
+        if ($extractedType = $this->extractFromCollectionType($type)) {
             $isCollection = true;
-            $type = substr($type, 0, $pos);
+            $type = $extractedType;
         }
 
         if (static::isTypeObject($type)) {
@@ -55,7 +55,12 @@ class TypeResolver
         return $type.($isCollection ? '[]' : '');
     }
 
-    private function isTypeObject($type)
+    /**
+     * @param string $type
+     *
+     * @return bool
+     */
+    protected function isTypeObject($type)
     {
         switch (strtolower($type)) {
             case 'int':
@@ -114,9 +119,9 @@ class TypeResolver
         $type = $returnTag->getType();
 
         $isCollection = false;
-        if (($pos = strpos($type, '[')) !== false) {
+        if ($extractedType = $this->extractFromCollectionType($type)) {
             $isCollection = true;
-            $type = substr($type, 0, $pos);
+            $type = $extractedType;
         }
 
         if (static::isTypeObject($type)) {
@@ -124,5 +129,21 @@ class TypeResolver
         }
 
         return $type.($isCollection ? '[]' : '');
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return string|null
+     */
+    private function extractFromCollectionType($type)
+    {
+        if (($pos = strpos($type, '[')) !== false) {
+            $type = substr($type, 0, $pos);
+
+            return $type;
+        }
+
+        return null;
     }
 }
