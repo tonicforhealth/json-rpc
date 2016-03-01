@@ -62,7 +62,7 @@ class MethodCollection implements \Iterator
     }
 
     /**
-     * {@inheritdoc}
+     * @return callable|false
      */
     public function current()
     {
@@ -70,7 +70,7 @@ class MethodCollection implements \Iterator
     }
 
     /**
-     * {@inheritdoc}
+     * @return callable|false
      */
     public function next()
     {
@@ -78,7 +78,7 @@ class MethodCollection implements \Iterator
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function key()
     {
