@@ -31,16 +31,15 @@ class MethodDispatcher implements MethodDispatcherInterface
     /**
      * Constructor.
      *
-     * @param LoaderInterface $loader
+     * @param LoaderInterface         $loader
      * @param ArgumentMapperInterface $argumentMapper
-     * @param MethodInvokerInterface $methodInvoker
+     * @param MethodInvokerInterface  $methodInvoker
      */
     public function __construct(
         LoaderInterface $loader,
         ArgumentMapperInterface $argumentMapper,
         MethodInvokerInterface $methodInvoker
-    )
-    {
+    ) {
         $this->loader = $loader;
         $this->argumentMapper = $argumentMapper;
         $this->methodInvoker = $methodInvoker;
@@ -51,7 +50,7 @@ class MethodDispatcher implements MethodDispatcherInterface
      */
     public function getMethodCollection()
     {
-        if (null == $this->methodCollection) {
+        if (null === $this->methodCollection) {
             $this->methodCollection = $this->loader->load();
         }
 
@@ -60,7 +59,7 @@ class MethodDispatcher implements MethodDispatcherInterface
 
     /**
      * @param string $methodName
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return mixed
      *
@@ -69,7 +68,7 @@ class MethodDispatcher implements MethodDispatcherInterface
     public function dispatch($methodName, array $arguments = [])
     {
         $methodCollection = $this->getMethodCollection();
-        if (! $methodCollection->has($methodName)) {
+        if (!$methodCollection->has($methodName)) {
             throw new MethodNotFoundException(sprintf('Method "%s" is not found', $methodName));
         }
 

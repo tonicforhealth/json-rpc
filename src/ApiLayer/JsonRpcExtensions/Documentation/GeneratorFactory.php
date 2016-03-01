@@ -15,7 +15,7 @@ class GeneratorFactory
         return new Generator(
             new MetadataExtractor(new TypeResolver(new PhpParser())),
             new \Twig_Environment(new \Twig_Loader_Filesystem([
-                __DIR__ . '/Resources'
+                __DIR__.'/Resources',
             ]))
         );
     }

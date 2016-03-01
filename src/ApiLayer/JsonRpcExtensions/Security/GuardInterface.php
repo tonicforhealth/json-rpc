@@ -20,7 +20,7 @@ interface GuardInterface
      *
      * @param string $userId
      * @param string $attributeName
-     * @param array $attributeValues
+     * @param array  $attributeValues
      *
      * @return array
      */

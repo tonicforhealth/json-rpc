@@ -168,4 +168,7 @@ Ideas & Improvements
 - Write full documentation;
 - Add model transformer aware interface; 
 - Add error handling for normalizers;
+- Normalize should check denormalization errors;
+- Handle collection types in type resolver;
+- Parse use block to work with FQCN in normalizers detect type method;
 - Add exceptions to documentation.

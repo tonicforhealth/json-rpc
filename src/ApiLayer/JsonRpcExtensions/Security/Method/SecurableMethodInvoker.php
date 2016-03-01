@@ -39,10 +39,10 @@ class SecurableMethodInvoker implements MethodInvokerInterface
 
     /**
      * @param MethodInvokerInterface $methodInvoker
-     * @param UserProviderInterface $userProvider
-     * @param GuardInterface $guard
-     * @param Reader $annotationReader
-     * @param PropertyAccessor $propertyAccessor
+     * @param UserProviderInterface  $userProvider
+     * @param GuardInterface         $guard
+     * @param Reader                 $annotationReader
+     * @param PropertyAccessor       $propertyAccessor
      */
     public function __construct(
         MethodInvokerInterface $methodInvoker,
@@ -50,8 +50,7 @@ class SecurableMethodInvoker implements MethodInvokerInterface
         GuardInterface $guard,
         Reader $annotationReader,
         PropertyAccessor $propertyAccessor
-    )
-    {
+    ) {
         $this->methodInvoker = $methodInvoker;
         $this->userProvider = $userProvider;
         $this->guard = $guard;
@@ -70,7 +69,7 @@ class SecurableMethodInvoker implements MethodInvokerInterface
         $attributeValue = $this->propertyAccessor->getValue($requestObject, $attributeAnnotation->valueAt);
 
         $userId = $this->userProvider->getUserId();
-        if ((! is_array($attributeValue)) && (! $this->guard->isGranted($userId, $attributeName, $attributeValue))) {
+        if ((!is_array($attributeValue)) && (!$this->guard->isGranted($userId, $attributeName, $attributeValue))) {
             throw new AccessDeniedException();
         }
 

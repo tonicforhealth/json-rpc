@@ -15,9 +15,9 @@ use Tonic\Component\ApiLayer\JsonRpc\Response\ResponseSerializer;
 class ServerFactory
 {
     /**
-     * @param LoaderInterface $loader
+     * @param LoaderInterface             $loader
      * @param MethodInvokerInterface|null $methodInvoker
-     * @param bool $exposeInternalExceptions
+     * @param bool                        $exposeInternalExceptions
      *
      * @return Server
      */
@@ -25,8 +25,7 @@ class ServerFactory
         LoaderInterface $loader,
         MethodInvokerInterface $methodInvoker = null,
         $exposeInternalExceptions = false
-    )
-    {
+    ) {
         if (null === $methodInvoker) {
             $methodInvoker = new MethodInvoker();
         }

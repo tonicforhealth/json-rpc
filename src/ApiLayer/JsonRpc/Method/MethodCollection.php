@@ -22,7 +22,7 @@ class MethodCollection implements \Iterator
     }
 
     /**
-     * @param string $methodName
+     * @param string   $methodName
      * @param callable $callable
      *
      * @return MethodCollection
@@ -51,7 +51,7 @@ class MethodCollection implements \Iterator
      */
     public function get($methodName)
     {
-        if (! $this->has($methodName)) {
+        if (!$this->has($methodName)) {
             return null;
         }
 

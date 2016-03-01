@@ -21,7 +21,7 @@ class Error
      * Constructor.
      *
      * @param string $message
-     * @param int $code
+     * @param int    $code
      */
     public function __construct($message, $code)
     {
@@ -52,7 +52,7 @@ class Error
     {
         return [
             'code' => $this->getCode(),
-            'message' => $this->getMessage()
+            'message' => $this->getMessage(),
         ];
     }
 }

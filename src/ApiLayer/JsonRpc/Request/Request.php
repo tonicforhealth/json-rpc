@@ -31,9 +31,9 @@ class Request
      * Constructor.
      *
      * @param string $version
-     * @param mixed $id
+     * @param mixed  $id
      * @param string $method
-     * @param array $params
+     * @param array  $params
      */
     public function __construct($version, $id, $method, array $params = [])
     {

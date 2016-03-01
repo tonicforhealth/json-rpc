@@ -3,7 +3,6 @@
 namespace Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation;
 
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodCollection;
-use Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation\MetadataExtractor;
 
 class Generator
 {
@@ -19,7 +18,7 @@ class Generator
 
     /**
      * @param \Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation\MetadataExtractor $metadataExtractor
-     * @param \Twig_Environment $twig
+     * @param \Twig_Environment                                                           $twig
      */
     public function __construct(MetadataExtractor $metadataExtractor, \Twig_Environment $twig)
     {
@@ -29,7 +28,7 @@ class Generator
 
     /**
      * @param MethodCollection $methodCollection
-     * @param string $templateName
+     * @param string           $templateName
      *
      * @return string
      */

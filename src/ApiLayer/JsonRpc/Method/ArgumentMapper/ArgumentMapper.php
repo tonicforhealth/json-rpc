@@ -40,7 +40,7 @@ class ArgumentMapper implements ArgumentMapperInterface
         $reflectionParameters = $reflectionFunction->getParameters();
         /** @var \ReflectionParameter $targetReflectionParameter */
         $targetReflectionParameter = reset($reflectionParameters);
-        if ($targetReflectionParameter->getClass() == null) {
+        if (null === $targetReflectionParameter->getClass()) {
             throw new InvalidMethodParametersException('Method parameter should have type definition');
         }
 

@@ -2,12 +2,13 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation;
 
-use Doctrine\Common\Annotations\PhpParser;
 use phpDocumentor\Reflection\DocBlock;
-use phpDocumentor\Reflection\DocBlock\Tag\ReturnTag;
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodCollection;
 use Tonic\Component\Reflection\TypeResolver;
 
+/**
+ * Extracts metadata from method collection.
+ */
 class MetadataExtractor
 {
     /**
@@ -43,7 +44,7 @@ class MetadataExtractor
                 'method' => $methodName,
                 'description' => $docBlock->getShortDescription(),
                 'parameters' => $this->extractParameters($requestObjectClass),
-                'returns' => $this->extractParameters($responseObjectClass)
+                'returns' => $this->extractParameters($responseObjectClass),
             ];
         }
 
@@ -52,7 +53,7 @@ class MetadataExtractor
 
     /**
      * @param string $class
-     * @param array $processed
+     * @param array  $processed
      *
      * @return array
      */
@@ -80,12 +81,12 @@ class MetadataExtractor
             $parameter = [
                 'name' => $reflectionProperty->getName(),
                 'description' => $docBlock->getShortDescription(),
-                'type' => $type . ($isCollection ? '[]' : '')
+                'type' => $type.($isCollection ? '[]' : ''),
             ];
             if (class_exists($type)) {
                 $parameter = array_merge($parameter, [
-                    'type' => 'object' . ($isCollection ? '[]' : ''),
-                    'properties' => $this->extractParameters($type, $processed)
+                    'type' => 'object'.($isCollection ? '[]' : ''),
+                    'properties' => $this->extractParameters($type, $processed),
                 ]);
             }
 

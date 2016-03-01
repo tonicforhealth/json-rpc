@@ -90,7 +90,7 @@ class ErrorResponse extends Response
     /**
      * @param string $id
      * @param string $message
-     * @param int $code
+     * @param int    $code
      *
      * @return ErrorResponse
      */
@@ -126,7 +126,7 @@ class ErrorResponse extends Response
     public function toArray()
     {
         return array_merge(parent::toArray(), [
-            'error' => $this->getError()->toArray()
+            'error' => $this->getError()->toArray(),
         ]);
     }
 }

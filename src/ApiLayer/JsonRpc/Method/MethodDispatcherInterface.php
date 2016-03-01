@@ -11,7 +11,7 @@ interface MethodDispatcherInterface
      * Resolves and invokes method with specified arguments.
      *
      * @param string $methodName
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return mixed
      */

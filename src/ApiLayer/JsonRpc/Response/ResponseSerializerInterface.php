@@ -7,7 +7,7 @@ interface ResponseSerializerInterface
     /**
      * Serializes response corresponding to appropriate version.
      *
-     * @param string $version
+     * @param string   $version
      * @param Response $response
      *
      * @return string

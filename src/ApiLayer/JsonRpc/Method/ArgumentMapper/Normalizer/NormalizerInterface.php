@@ -13,7 +13,7 @@ interface NormalizerInterface
 
     /**
      * @param string $className
-     * @param array $data
+     * @param array  $data
      *
      * @return object
      */

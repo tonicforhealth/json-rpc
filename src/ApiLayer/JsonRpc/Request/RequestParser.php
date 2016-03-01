@@ -17,7 +17,7 @@ class RequestParser implements RequestParserInterface
             throw new ParseException(sprintf('Invalid JSON syntax: "%s"', json_last_error_msg()));
         }
 
-        if (! is_array($data)) {
+        if (!is_array($data)) {
             throw new InvalidRequestException('Request is not valid JSON');
         }
 
@@ -36,10 +36,10 @@ class RequestParser implements RequestParserInterface
         $difference = array_diff(['jsonrpc', 'method', 'id', 'params'], array_keys($data));
 
         if (0 < count($difference)) {
-            throw new InvalidRequestException(sprintf('Request attributes are missed: %s', join(', ', $difference)));
+            throw new InvalidRequestException(sprintf('Request attributes are missed: %s', implode(', ', $difference)));
         }
 
-        if (! is_array($data['params'])) {
+        if (!is_array($data['params'])) {
             throw new InvalidRequestException('Parameters should have an object structure');
         }
     }

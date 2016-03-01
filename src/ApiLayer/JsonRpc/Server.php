@@ -35,18 +35,17 @@ class Server implements ServerInterface
     /**
      * Constructor.
      *
-     * @param RequestParserInterface $requestParser
-     * @param MethodDispatcherInterface $methodDispatcher
+     * @param RequestParserInterface      $requestParser
+     * @param MethodDispatcherInterface   $methodDispatcher
      * @param ResponseSerializerInterface $responseSerializer
-     * @param ErrorResponseFactory $errorResponseFactory
+     * @param ErrorResponseFactory        $errorResponseFactory
      */
     public function __construct(
         RequestParserInterface $requestParser,
         MethodDispatcherInterface $methodDispatcher,
         ResponseSerializerInterface $responseSerializer,
         ErrorResponseFactory $errorResponseFactory
-    )
-    {
+    ) {
         $this->requestParser = $requestParser;
         $this->methodDispatcher = $methodDispatcher;
         $this->responseSerializer = $responseSerializer;

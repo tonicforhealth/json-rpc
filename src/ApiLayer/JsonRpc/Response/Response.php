@@ -36,7 +36,7 @@ abstract class Response
     public function toArray()
     {
         return [
-            'id' => $this->getId()
+            'id' => $this->getId(),
         ];
     }
 }

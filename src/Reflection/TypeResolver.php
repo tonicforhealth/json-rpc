@@ -7,6 +7,9 @@ use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Tag\ReturnTag;
 use phpDocumentor\Reflection\DocBlock\Tag\VarTag;
 
+/**
+ * Resolves types by comments.
+ */
 class TypeResolver
 {
     /**
@@ -23,9 +26,8 @@ class TypeResolver
     }
 
     /**
-     *  @todo handle collection types
-     *
      * @param \ReflectionProperty $reflectionProperty
+     *
      * @return null|string
      */
     public function resolvePropertyType(\ReflectionProperty $reflectionProperty)
@@ -50,7 +52,7 @@ class TypeResolver
             $type = $this->resolveClassName($type, $reflectionProperty->getDeclaringClass());
         }
 
-        return $type . ($isCollection ? '[]' : '');
+        return $type.($isCollection ? '[]' : '');
     }
 
     private function isTypeObject($type)
@@ -90,8 +92,8 @@ class TypeResolver
         $aliases = $this->phpParser->parseClass($usingClass);
         $alias = strtolower($type);
 
-        if (! isset($aliases[$alias])) {
-            return $usingClass->getNamespaceName() . '\\' . $type;
+        if (!isset($aliases[$alias])) {
+            return $usingClass->getNamespaceName().'\\'.$type;
         }
 
         return $aliases[$alias];
@@ -116,6 +118,6 @@ class TypeResolver
             $type = $this->resolveClassName($type, $reflectionFunction->getDeclaringClass());
         }
 
-        return $type . ($isCollection ? '[]' : '');
+        return $type.($isCollection ? '[]' : '');
     }
 }

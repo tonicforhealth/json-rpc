@@ -35,7 +35,7 @@ class MutableAnnotationLoader implements LoaderInterface
      */
     public function add($service)
     {
-        if (! is_object($service)) {
+        if (!is_object($service)) {
             throw new \InvalidArgumentException('Supports only objects');
         }
 

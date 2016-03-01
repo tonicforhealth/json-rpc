@@ -8,7 +8,7 @@ interface ArgumentMapperInterface
      * Maps arguments to simple request object.
      *
      * @param callable $callable
-     * @param array $arguments
+     * @param array    $arguments
      *
      * @return object
      */

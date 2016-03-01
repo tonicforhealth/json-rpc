@@ -36,7 +36,7 @@ class SuccessResponse extends Response
     public function toArray()
     {
         return array_merge(parent::toArray(), [
-            'result' => $this->getResult()
+            'result' => $this->getResult(),
         ]);
     }
 }

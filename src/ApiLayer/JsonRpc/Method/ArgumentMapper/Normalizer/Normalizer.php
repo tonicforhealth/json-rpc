@@ -20,8 +20,6 @@ class Normalizer implements NormalizerInterface
      */
     public function denormalize($className, array $data = [])
     {
-        // @todo check for denormalization errors
-
         $reflectionClass = new \ReflectionClass($className);
         $instance = $reflectionClass->newInstanceWithoutConstructor();
         foreach ($reflectionClass->getProperties() as $reflectionProperty) {
@@ -44,11 +42,9 @@ class Normalizer implements NormalizerInterface
      */
     public function detectType(\ReflectionProperty $reflectionProperty)
     {
-        // @todo parse use block to work with FQCN
-
         $docBlock = new DocBlock($reflectionProperty->getDocComment());
         $tags = $docBlock->getTagsByName('var');
-        if (count($tags) == 0 ) {
+        if (count($tags) == 0) {
             return null;
         }
 

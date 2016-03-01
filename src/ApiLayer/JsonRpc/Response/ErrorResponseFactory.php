@@ -37,7 +37,7 @@ class ErrorResponseFactory
     }
 
     /**
-     * @param \Exception $exception
+     * @param \Exception  $exception
      * @param string|null $id
      *
      * @return ErrorResponse

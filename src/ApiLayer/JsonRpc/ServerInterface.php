@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tonic\Component\ApiLayer\JsonRpc;
 
 interface ServerInterface
