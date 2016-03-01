@@ -1,7 +1,8 @@
 {
-    "name": "tonic/api-layer",
+    "name": "tonicforhealth/json-rpc",
     "type": "library",
-    "description": "API layer component",
+    "description": "JSON-RPC component",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dmytro Krasun",
