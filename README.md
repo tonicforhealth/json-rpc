@@ -142,6 +142,17 @@ $response = $server->handle('{"jsonrpc": "2.0", "method": "calc.subtract", "para
 // $response = '{"jsonrpc": "2.0", "result": 19, "id": 3}'; 
 ```
 
+Specifications
+--------------
+
+All actual documentation is runnable library specifications at `/spec` directory. 
+
+And to ensure library is not broken, run (under library directory):
+
+```
+bin/phpspec run
+```
+
 Ideas & Improvements
 --------------------
 
