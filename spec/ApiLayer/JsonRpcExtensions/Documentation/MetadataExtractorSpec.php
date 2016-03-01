@@ -3,6 +3,7 @@
 namespace spec\Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation;
 
 use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodCollection;
 use Tonic\Component\Reflection\TypeResolver;
 
@@ -20,6 +21,11 @@ class MetadataExtractorSpec extends ObjectBehavior
     public function it_should_extract_metadata_from_method_collection(
         TypeResolver $typeResolver
     ) {
+        $typeResolver
+            ->extractTypeFromCollectionType(Argument::any())
+            ->willReturn(null)
+        ;
+
         $typeResolver
             ->resolvePropertyType(new \ReflectionProperty(DocRequest::class, 'someElem'))
             ->willReturn(DocRequestElem::class)
