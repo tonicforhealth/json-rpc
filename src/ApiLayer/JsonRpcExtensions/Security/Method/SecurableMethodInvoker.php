@@ -9,6 +9,7 @@ use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\Annotation\Attribute;
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\Exception\AccessDeniedException;
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\GuardInterface;
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\UserProviderInterface;
+use Tonic\Component\Reflection\ReflectionFunctionFactory;
 
 /**
  * Decorator for method invoker, which allows to secure method invokation.
@@ -67,7 +68,7 @@ class SecurableMethodInvoker implements MethodInvokerInterface
     public function invoke(callable $callable, $requestObject)
     {
         /** @var Attribute $attributeAnnotation */
-        $attributeAnnotation = $this->annotationReader->getMethodAnnotation($this->createReflectionFunction($callable), Attribute::class);
+        $attributeAnnotation = $this->annotationReader->getMethodAnnotation(ReflectionFunctionFactory::createFromCallable($callable), Attribute::class);
         $attributeName = $attributeAnnotation->name;
         $attributeValue = $this->propertyAccessor->getValue($requestObject, $attributeAnnotation->valueAt);
 
@@ -82,18 +83,5 @@ class SecurableMethodInvoker implements MethodInvokerInterface
         }
 
         return $this->methodInvoker->invoke($callable, $requestObject);
-    }
-
-    /**
-     * @param callable $callable
-     *
-     * @return \ReflectionFunctionAbstract
-     */
-    private function createReflectionFunction(callable $callable)
-    {
-        return is_array($callable) && (count($callable) == 2)
-            ? new \ReflectionMethod($callable[0], $callable[1])
-            : new \ReflectionFunction($callable)
-        ;
     }
 }

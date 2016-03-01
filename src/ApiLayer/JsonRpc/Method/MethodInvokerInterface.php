@@ -9,7 +9,7 @@ interface MethodInvokerInterface
 {
     /**
      * @param callable $callable
-     * @param object   $requestObject
+     * @param array|object $requestObject
      *
      * @return array|object
      */
