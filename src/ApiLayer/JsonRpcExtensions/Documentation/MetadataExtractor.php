@@ -4,6 +4,7 @@ namespace Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation;
 
 use phpDocumentor\Reflection\DocBlock;
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodCollection;
+use Tonic\Component\Reflection\ReflectionFunctionFactory;
 use Tonic\Component\Reflection\TypeResolver;
 
 /**
@@ -32,8 +33,9 @@ class MetadataExtractor
     public function extract(MethodCollection $methodCollection)
     {
         $metadata = [];
+        /** @var callable $callable */
         foreach ($methodCollection as $methodName => $callable) {
-            $reflectionFunction = $this->createReflectionFunction($callable);
+            $reflectionFunction = ReflectionFunctionFactory::createFromCallable($callable);
 
             $requestObjectClass = $this->determineRequestObjectClass($reflectionFunction);
             $responseObjectClass = $this->determineResponseObjectClass($reflectionFunction);
@@ -128,18 +130,5 @@ class MetadataExtractor
     private function determinePropertyType(\ReflectionProperty $reflectionProperty)
     {
         return $this->typeResolver->resolvePropertyType($reflectionProperty);
-    }
-
-    /**
-     * @param callable $callable
-     *
-     * @return \ReflectionFunctionAbstract
-     */
-    private function createReflectionFunction(callable $callable)
-    {
-        return is_array($callable) && (count($callable) == 2)
-            ? new \ReflectionMethod($callable[0], $callable[1])
-            : new \ReflectionFunction($callable)
-        ;
     }
 }

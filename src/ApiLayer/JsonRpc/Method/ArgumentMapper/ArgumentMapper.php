@@ -5,7 +5,11 @@ namespace Tonic\Component\ApiLayer\JsonRpc\Method\ArgumentMapper;
 use Tonic\Component\ApiLayer\JsonRpc\Method\ArgumentMapper\Normalizer\NormalizerInterface;
 use Tonic\Component\ApiLayer\JsonRpc\Method\Exception\InvalidCallableArgumentsException;
 use Tonic\Component\ApiLayer\JsonRpc\Method\Exception\InvalidMethodParametersException;
+use Tonic\Component\Reflection\ReflectionFunctionFactory;
 
+/**
+ * Maps arguments to request object.
+ */
 class ArgumentMapper implements ArgumentMapperInterface
 {
     /**
@@ -32,7 +36,7 @@ class ArgumentMapper implements ArgumentMapperInterface
             throw new InvalidCallableArgumentsException('Can not map indexed arrays');
         }
 
-        $reflectionFunction = $this->createReflectionFunction($callable);
+        $reflectionFunction = ReflectionFunctionFactory::createFromCallable($callable);
         if ($reflectionFunction->getNumberOfRequiredParameters() > 1) {
             throw new InvalidMethodParametersException('Could not map to more than one parameter');
         }
@@ -44,7 +48,7 @@ class ArgumentMapper implements ArgumentMapperInterface
             throw new InvalidMethodParametersException('Method parameter should have type definition');
         }
 
-        $mapped = $this->normalizer->denormalize($targetReflectionParameter->getClass()->getName(), $arguments);
+        $mapped = $this->normalizer->denormalize($targetReflectionParameter->getClass()->name, $arguments);
 
         return $mapped;
     }
@@ -57,18 +61,5 @@ class ArgumentMapper implements ArgumentMapperInterface
     private function isIndexedArray(array $array)
     {
         return array_values($array) == $array;
-    }
-
-    /**
-     * @param callable $callable
-     *
-     * @return \ReflectionFunctionAbstract
-     */
-    private function createReflectionFunction(callable $callable)
-    {
-        return is_array($callable) && (count($callable) == 2)
-            ? new \ReflectionMethod($callable[0], $callable[1])
-            : new \ReflectionFunction($callable)
-        ;
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpc\Method\ArgumentMapper;
 
+/**
+ * Maps arguments to request object.
+ */
 interface ArgumentMapperInterface
 {
     /**

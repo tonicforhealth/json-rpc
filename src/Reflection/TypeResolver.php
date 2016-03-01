@@ -99,6 +99,11 @@ class TypeResolver
         return $aliases[$alias];
     }
 
+    /**
+     * @param \ReflectionMethod $reflectionFunction
+     *
+     * @return string
+     */
     public function resolveFunctionReturnType(\ReflectionMethod $reflectionFunction)
     {
         $docBlock = new DocBlock($reflectionFunction);
