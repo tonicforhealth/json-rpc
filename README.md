@@ -1,5 +1,5 @@
-JSON-RPC Component
-==================
+JSON-RPC
+========
 
 Ideas & Improvements
 --------------------

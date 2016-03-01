@@ -1,7 +1,7 @@
 {
     "name": "tonicforhealth/json-rpc",
     "type": "library",
-    "description": "JSON-RPC component",
+    "description": "JSON-RPC request handler",
     "license": "MIT",
     "authors": [
         {
