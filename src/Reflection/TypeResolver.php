@@ -105,11 +105,11 @@ class TypeResolver
     }
 
     /**
-     * @param \ReflectionMethod $reflectionFunction
+     * @param \ReflectionFunctionAbstract $reflectionFunction
      *
      * @return string
      */
-    public function resolveFunctionReturnType(\ReflectionMethod $reflectionFunction)
+    public function resolveFunctionReturnType(\ReflectionFunctionAbstract $reflectionFunction)
     {
         $docBlock = new DocBlock($reflectionFunction);
         $returnTags = $docBlock->getTagsByName('return');
@@ -124,7 +124,7 @@ class TypeResolver
             $type = $extractedType;
         }
 
-        if (static::isTypeObject($type)) {
+        if (static::isTypeObject($type) && $reflectionFunction instanceof \ReflectionMethod) {
             $type = $this->resolveClassName($type, $reflectionFunction->getDeclaringClass());
         }
 

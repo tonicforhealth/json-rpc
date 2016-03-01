@@ -62,7 +62,7 @@ class MethodCollection implements \Iterator
     }
 
     /**
-     * @return callable|false
+     * @return callable
      */
     public function current()
     {
@@ -70,7 +70,7 @@ class MethodCollection implements \Iterator
     }
 
     /**
-     * @return callable|false
+     * @return callable
      */
     public function next()
     {

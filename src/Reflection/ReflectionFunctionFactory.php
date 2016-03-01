@@ -18,4 +18,18 @@ class ReflectionFunctionFactory
             ? new \ReflectionMethod($callable[0], $callable[1])
             : new \ReflectionFunction($callable);
     }
+
+    /**
+     * @param callable $callable
+     *
+     * @return \ReflectionMethod
+     */
+    public static function createReflectionMethodFromCallable(callable $callable)
+    {
+        if (is_array($callable) && (count($callable) == 2)) {
+            return new \ReflectionMethod($callable[0], $callable[1]);
+        }
+
+        throw new \InvalidArgumentException('Expects method callable');
+    }
 }

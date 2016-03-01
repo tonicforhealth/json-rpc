@@ -68,7 +68,7 @@ class SecurableMethodInvoker implements MethodInvokerInterface
     public function invoke(callable $callable, $requestObject)
     {
         /** @var Attribute $attributeAnnotation */
-        $attributeAnnotation = $this->annotationReader->getMethodAnnotation(ReflectionFunctionFactory::createFromCallable($callable), Attribute::class);
+        $attributeAnnotation = $this->annotationReader->getMethodAnnotation(ReflectionFunctionFactory::createReflectionMethodFromCallable($callable), Attribute::class);
         $attributeName = $attributeAnnotation->name;
         $attributeValue = $this->propertyAccessor->getValue($requestObject, $attributeAnnotation->valueAt);
 
