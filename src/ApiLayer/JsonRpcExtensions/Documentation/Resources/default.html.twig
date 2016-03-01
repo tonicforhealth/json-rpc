@@ -1,0 +1,137 @@
+{% macro render_parameters(parameters) %}
+    <dl class="parameters">
+        {% for parameter in parameters %}
+            <dt>
+                <span class="name">{{ parameter.name }}</span>: <span class="type">{{ parameter.type }}</span>
+                {% if parameter.description is defined and parameter.description is not empty %}
+                    <span class="description">{{ parameter.description }}</span>
+                {% endif %}
+            </dt>
+            <dd>
+                {% if parameter.properties %}
+                    {{ _self.render_parameters(parameter.properties) }}
+                {% endif %}
+            </dd>
+        {% endfor %}
+    </dl>
+{% endmacro %}
+{% macro render_returns(returns) %}
+    <dl class="returns">
+        {% for returnType in returns %}
+            <dt>
+                <span class="name">{{ returnType.name }}</span>: <span class="type">{{ returnType.type }}</span>
+                {% if returnType.description is defined and returnType.description is not empty %}
+                    <span class="description">{{ returnType.description }}</span>
+                {% endif %}
+            </dt>
+            <dd>
+                {% if returnType.properties %}
+                    {{ _self.render_returns(returnType.properties) }}
+                {% endif %}
+            </dd>
+        {% endfor %}
+    </dl>
+{% endmacro %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <style type="text/css">
+            body {
+                font-size: 10pt;
+                font-family: Verdana, Arial;
+            }
+
+            #metadata > dt {
+                padding: 10pt;
+                border-bottom: 1px solid #ccc;
+            }
+
+            #metadata > dd {
+                margin-top: 10px;
+            }
+
+            #metadata > dd > .description {
+                margin-bottom: 10px;
+
+            }
+
+            .returns .description,
+            .parameters .description,
+            #metadata > dd > .description {
+                font-size: 120%;
+                font-style: italic;
+                font-family: "Georgia", Times, serif;
+            }
+
+            .returns .description,
+            .parameters .description {
+                margin-left: 10px;
+            }
+
+            .parameters {
+                margin-left: 20px;
+            }
+
+            .returns {
+                margin-left: 20px;
+            }
+
+            .method {
+                font-size: 140%;
+                font-weight: bold;
+            }
+
+            .parameters-container .title {
+                font-size: 120%;
+                color: #999;
+            }
+
+            .returns-container .title {
+                font-size: 120%;
+                color: #999;
+            }
+
+            .parameters .name {
+                font-weight: bold;
+            }
+
+            .returns .name {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <dl id="metadata">
+            {%  for method in metadata %}
+            <dt class="method">
+                {{ method.method }}
+            </dt>
+            <dd>
+                {% if method.description is defined and method.description is not empty %}
+                    <div class="description">
+                        {{ method.description }}
+                    </div>
+                {% endif %}
+                <div class="parameters-container">
+                    <div class="title">
+                        parameters →
+                    </div>
+                    <div>
+                        {{ _self.render_parameters(method.parameters) }}
+                    </div>
+                </div>
+                <div class="returns-container">
+                    <div class="title">
+                        ← returns
+                    </div>
+                    <div class="content">
+                        {{ _self.render_returns(method.returns) }}
+                    </div>
+                </div>
+
+            </dd>
+            {% endfor %}
+        </dl>
+    </body>
+</html>
