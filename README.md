@@ -1,6 +1,10 @@
 JSON-RPC
 ========
 
+[![Build Status](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f8096981-b240-4d8e-87a7-061921a7cb28/mini.png)](https://insight.sensiolabs.com/projects/f8096981-b240-4d8e-87a7-061921a7cb28)
+
 Ideas & Improvements
 --------------------
 
