@@ -1,7 +1,7 @@
 JSON-RPC
 ========
 
-Handles [JSON-RPC specification](http://www.jsonrpc.org/specification) requests. 
+Handles [JSON-RPC](http://www.jsonrpc.org/specification) requests. 
  
 [![Build Status](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tonicforhealth/json-rpc/?branch=master)
