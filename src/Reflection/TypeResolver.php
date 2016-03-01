@@ -32,15 +32,34 @@ class TypeResolver
      */
     public function resolvePropertyType(\ReflectionProperty $reflectionProperty)
     {
-        $docBlock = new DocBlock($reflectionProperty);
-        $varTags = $docBlock->getTagsByName('var');
-        if (count($varTags) == 0) {
-            return null;
-        }
+        return $this->resolveElementType($reflectionProperty, 'var');
+    }
 
-        /** @var VarTag $varTag */
-        $varTag = reset($varTags);
-        $type = $varTag->getType();
+    /**
+     * @param \ReflectionFunctionAbstract $reflectionFunction
+     *
+     * @return string
+     */
+    public function resolveFunctionReturnType(\ReflectionFunctionAbstract $reflectionFunction)
+    {
+        $this->resolveElementType($reflectionFunction, 'return');
+    }
+
+    /**
+     * @param \Reflector $reflector
+     * @param string $tagName
+     *
+     * @return string|null
+     */
+    public function resolveElementType(\Reflector $reflector, $tagName)
+    {
+        $docBlock = new DocBlock($reflector);
+        $returnTags = $docBlock->getTagsByName($tagName);
+
+        /** @var ReturnTag $returnTag */
+        $returnTag = reset($returnTags);
+
+        $type = $returnTag->getType();
 
         $isCollection = false;
         if ($extractedType = $this->extractTypeFromCollectionType($type)) {
@@ -48,8 +67,8 @@ class TypeResolver
             $type = $extractedType;
         }
 
-        if (static::isTypeObject($type)) {
-            $type = $this->resolveClassName($type, $reflectionProperty->getDeclaringClass());
+        if (static::isTypeObject($type) && ($reflector instanceof \ReflectionMethod || $reflector instanceof \ReflectionProperty)) {
+            $type = $this->resolveClassName($type, $reflector->getDeclaringClass());
         }
 
         return $type.($isCollection ? '[]' : '');
@@ -102,33 +121,6 @@ class TypeResolver
         }
 
         return $aliases[$alias];
-    }
-
-    /**
-     * @param \ReflectionFunctionAbstract $reflectionFunction
-     *
-     * @return string
-     */
-    public function resolveFunctionReturnType(\ReflectionFunctionAbstract $reflectionFunction)
-    {
-        $docBlock = new DocBlock($reflectionFunction);
-        $returnTags = $docBlock->getTagsByName('return');
-        /** @var ReturnTag $returnTag */
-        $returnTag = reset($returnTags);
-
-        $type = $returnTag->getType();
-
-        $isCollection = false;
-        if ($extractedType = $this->extractTypeFromCollectionType($type)) {
-            $isCollection = true;
-            $type = $extractedType;
-        }
-
-        if (static::isTypeObject($type) && $reflectionFunction instanceof \ReflectionMethod) {
-            $type = $this->resolveClassName($type, $reflectionFunction->getDeclaringClass());
-        }
-
-        return $type.($isCollection ? '[]' : '');
     }
 
     /**
