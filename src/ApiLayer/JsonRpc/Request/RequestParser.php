@@ -5,6 +5,9 @@ namespace Tonic\Component\ApiLayer\JsonRpc\Request;
 use Tonic\Component\ApiLayer\JsonRpc\Request\Exception\InvalidRequestException;
 use Tonic\Component\ApiLayer\JsonRpc\Request\Exception\ParseException;
 
+/**
+ * Turns JSON into request object.
+ */
 class RequestParser implements RequestParserInterface
 {
     /**

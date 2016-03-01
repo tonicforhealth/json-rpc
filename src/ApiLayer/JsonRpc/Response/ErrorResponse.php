@@ -2,7 +2,10 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpc\Response;
 
-class ErrorResponse extends Response
+/**
+ * Represents error.
+ */
+class ErrorResponse extends AbstractResponse
 {
     /**
      * Parse error.
@@ -41,7 +44,7 @@ class ErrorResponse extends Response
      */
     public static function parseError($message = 'Parse error')
     {
-        return new static(null, new Error($message, self::CODE_PARSE_ERROR));
+        return new static(null, new Error($message, self::CODE_PARSE_ERROR)); // @codingStandardsIgnoreLine
     }
 
     /**
@@ -51,7 +54,7 @@ class ErrorResponse extends Response
      */
     public static function invalidRequestError($message = 'Invalid request')
     {
-        return new static(null, new Error($message, self::CODE_INVALID_REQUEST_ERROR));
+        return new static(null, new Error($message, self::CODE_INVALID_REQUEST_ERROR)); // @codingStandardsIgnoreLine
     }
 
     /**
@@ -62,18 +65,18 @@ class ErrorResponse extends Response
      */
     public static function invalidParamsError($id, $message = 'Invalid params')
     {
-        return new static($id, new Error($message, self::CODE_INVALID_PARAMS_ERROR));
+        return new static($id, new Error($message, self::CODE_INVALID_PARAMS_ERROR)); // @codingStandardsIgnoreLine
     }
 
     /**
-     * @param $id
+     * @param string $id
      * @param string $message
      *
      * @return ErrorResponse
      */
     public static function methodNotFoundError($id, $message = 'Method not found')
     {
-        return new static($id, new Error($message, self::CODE_METHOD_NOT_FOUND_ERROR));
+        return new static($id, new Error($message, self::CODE_METHOD_NOT_FOUND_ERROR)); // @codingStandardsIgnoreLine
     }
 
     /**
@@ -84,7 +87,7 @@ class ErrorResponse extends Response
      */
     public static function applicationError($id, $message = 'Internal error')
     {
-        return new static($id, new Error($message, self::CODE_APPLICATION_ERROR));
+        return new static($id, new Error($message, self::CODE_APPLICATION_ERROR)); // @codingStandardsIgnoreLine
     }
 
     /**
@@ -96,7 +99,7 @@ class ErrorResponse extends Response
      */
     public static function applicationDefinedError($id, $message, $code)
     {
-        return new static($id, new Error($message, $code));
+        return new static($id, new Error($message, $code)); // @codingStandardsIgnoreLine
     }
 
     /**

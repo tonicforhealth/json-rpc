@@ -3,23 +3,23 @@
 namespace spec\Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodCollection;
 use Tonic\Component\Reflection\TypeResolver;
 
+/**
+ * @codingStandardsIgnoreStart
+ */
 class MetadataExtractorSpec extends ObjectBehavior
 {
-    function let(TypeResolver $typeResolver)
+    public function let(TypeResolver $typeResolver)
     {
         $this->beAnInstanceOf('Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation\MetadataExtractor');
         $this->beConstructedWith($typeResolver);
     }
 
-    function it_should_extract_metadata_from_method_collection(
+    public function it_should_extract_metadata_from_method_collection(
         TypeResolver $typeResolver
-    )
-    {
+    ) {
         $typeResolver
             ->resolvePropertyType(new \ReflectionProperty(DocRequest::class, 'someElem'))
             ->willReturn(DocRequestElem::class)
@@ -52,7 +52,7 @@ class MetadataExtractorSpec extends ObjectBehavior
 
         $this
             ->extract(new MethodCollection([
-                'doc.service' => [new DocService(), 'wellDocumentedFunction']
+                'doc.service' => [new DocService(), 'wellDocumentedFunction'],
             ]))
             ->shouldBeLike([[
                 'method' => 'doc.service',
@@ -61,7 +61,7 @@ class MetadataExtractorSpec extends ObjectBehavior
                     ['name' => 'someElem', 'description' => 'Some description of property.', 'type' => 'object', 'properties' => [
                         ['name' => 'prop', 'description' => '', 'type' => 'string'],
                         ['name' => 'req', 'description' => '', 'type' => 'object', 'properties' => []],
-                    ]]
+                    ]],
                 ],
                 'returns' => [[
                     'name' => 'docResponseElem',
@@ -70,9 +70,9 @@ class MetadataExtractorSpec extends ObjectBehavior
                     'properties' => [[
                         'name' => 'prop',
                         'description' => '',
-                        'type' => 'string'
-                    ]]
-                ]]
+                        'type' => 'string',
+                    ]],
+                ]],
             ]])
         ;
     }

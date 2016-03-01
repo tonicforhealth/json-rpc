@@ -5,6 +5,9 @@ namespace Tonic\Component\ApiLayer\JsonRpc\Method\ArgumentMapper\Normalizer;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Tag\VarTag;
 
+/**
+ * Simplest implementation of normalizer.
+ */
 class Normalizer implements NormalizerInterface
 {
     /**

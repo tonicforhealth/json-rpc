@@ -3,19 +3,20 @@
 namespace spec\Tonic\Component\ApiLayer\JsonRpc\Method;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodInvokerInterface;
 
+/**
+ * @codingStandardsIgnoreStart
+ */
 class MethodInvokerSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $this->beAnInstanceOf('Tonic\Component\ApiLayer\JsonRpc\Method\MethodInvoker');
         $this->shouldImplement(MethodInvokerInterface::class);
     }
 
-    function it_should_invokes_method(InvokableService $invokableService)
+    public function it_should_invokes_method(InvokableService $invokableService)
     {
         $invokableService
             ->invokableMethod(':arg')
@@ -34,6 +35,6 @@ class InvokableService
 {
     public function invokableMethod($argument)
     {
-        return 'some result' . $argument;
+        return 'some result'.$argument;
     }
 }

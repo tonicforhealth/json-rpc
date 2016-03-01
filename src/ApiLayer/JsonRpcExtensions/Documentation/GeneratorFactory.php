@@ -5,6 +5,9 @@ namespace Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation;
 use Doctrine\Common\Annotations\PhpParser;
 use Tonic\Component\Reflection\TypeResolver;
 
+/**
+ * Simple factory for documentation generator.
+ */
 class GeneratorFactory
 {
     /**

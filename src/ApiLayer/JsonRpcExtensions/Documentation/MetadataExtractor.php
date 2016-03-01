@@ -109,7 +109,7 @@ class MetadataExtractor
         /** @var \ReflectionParameter $reflectionParameter */
         $reflectionParameter = reset($reflectionParameters);
 
-        return $reflectionParameter->getClass()->getName();
+        return $reflectionParameter->getClass()->name;
     }
 
     /**

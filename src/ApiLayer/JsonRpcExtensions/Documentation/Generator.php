@@ -4,6 +4,9 @@ namespace Tonic\Component\ApiLayer\JsonRpcExtensions\Documentation;
 
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodCollection;
 
+/**
+ * Generates documentation.
+ */
 class Generator
 {
     /**

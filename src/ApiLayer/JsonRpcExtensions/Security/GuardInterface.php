@@ -2,6 +2,9 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpcExtensions\Security;
 
+/**
+ * Simple abstraction for guarding methods calls.
+ */
 interface GuardInterface
 {
     /**

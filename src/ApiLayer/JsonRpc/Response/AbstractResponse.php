@@ -5,7 +5,7 @@ namespace Tonic\Component\ApiLayer\JsonRpc\Response;
 /**
  * Represents JSON-RPC response object.
  */
-abstract class Response
+abstract class AbstractResponse
 {
     /**
      * @var mixed

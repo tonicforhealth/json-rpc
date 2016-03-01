@@ -3,16 +3,18 @@
 namespace spec\Tonic\Component\ApiLayer\JsonRpc\Request;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
+/**
+ * @codingStandardsIgnoreStart
+ */
 class RequestSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $this->beAnInstanceOf('Tonic\Component\ApiLayer\JsonRpc\Request\Request');
     }
 
-    function it_should_be_correctly_constructed()
+    public function it_should_be_correctly_constructed()
     {
         $this->beConstructedWith('2.12', 'sample-id', 'sampleService.sampleMethod', ['param1' => 1]);
 

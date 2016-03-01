@@ -10,6 +10,9 @@ use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\Exception\AccessDeniedEx
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\GuardInterface;
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\UserProviderInterface;
 
+/**
+ * Decorator for method invoker, which allows to secure method invokation.
+ */
 class SecurableMethodInvoker implements MethodInvokerInterface
 {
     /**

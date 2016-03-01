@@ -2,6 +2,9 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpc\Method;
 
+/**
+ * Holds collection of methods for JSON-RPC server.
+ */
 class MethodCollection implements \Iterator
 {
     /**
@@ -35,7 +38,7 @@ class MethodCollection implements \Iterator
     }
 
     /**
-     * @param $methodName
+     * @param string $methodName
      *
      * @return bool
      */

@@ -6,6 +6,9 @@ use Doctrine\Common\Annotations\Reader;
 use Tonic\Component\ApiLayer\JsonRpc\Annotation\Method;
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodCollection;
 
+/**
+ * Allows to load methods from annotations.
+ */
 class MutableAnnotationLoader implements LoaderInterface
 {
     /**

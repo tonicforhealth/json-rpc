@@ -2,6 +2,9 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpc\Method\ArgumentMapper\Normalizer;
 
+/**
+ * Transforms object to array and vice versa.
+ */
 interface NormalizerInterface
 {
     /**

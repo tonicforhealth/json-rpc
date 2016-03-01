@@ -2,6 +2,9 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpc\Method;
 
+/**
+ * Invokes method with specified parameters.
+ */
 interface MethodInvokerInterface
 {
     /**

@@ -6,6 +6,9 @@ use Tonic\Component\ApiLayer\JsonRpc\Method\ArgumentMapper\ArgumentMapperInterfa
 use Tonic\Component\ApiLayer\JsonRpc\Method\Exception\MethodNotFoundException;
 use Tonic\Component\ApiLayer\JsonRpc\Method\Loader\LoaderInterface;
 
+/**
+ * Dispatches method call.
+ */
 class MethodDispatcher implements MethodDispatcherInterface
 {
     /**

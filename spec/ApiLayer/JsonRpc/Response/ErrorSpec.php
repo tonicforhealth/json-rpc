@@ -3,16 +3,18 @@
 namespace spec\Tonic\Component\ApiLayer\JsonRpc\Response;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
+/**
+ * @codingStandardsIgnoreStart
+ */
 class ErrorSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $this->beAnInstanceOf('Tonic\Component\ApiLayer\JsonRpc\Response\Error');
     }
 
-    function it_should_be_correctly_constructed()
+    public function it_should_be_correctly_constructed()
     {
         $this->beConstructedWith('Some error message', 205);
 
@@ -20,13 +22,13 @@ class ErrorSpec extends ObjectBehavior
         $this->getMessage()->shouldBe('Some error message');
     }
 
-    function it_should_support_array_normalization()
+    public function it_should_support_array_normalization()
     {
         $this->beConstructedWith('Some error message', 205);
 
         $this->toArray()->shouldBeLike([
             'code' => 205,
-            'message' => 'Some error message'
+            'message' => 'Some error message',
         ]);
     }
 }

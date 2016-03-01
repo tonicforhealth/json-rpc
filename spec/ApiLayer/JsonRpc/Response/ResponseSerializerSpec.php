@@ -3,18 +3,19 @@
 namespace spec\Tonic\Component\ApiLayer\JsonRpc\Response;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use Tonic\Component\ApiLayer\JsonRpc\Response\AbstractResponse;
 
-use Tonic\Component\ApiLayer\JsonRpc\Response\Response;
-
+/**
+ * @codingStandardsIgnoreStart
+ */
 class ResponseSerializerSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $this->shouldHaveType('Tonic\Component\ApiLayer\JsonRpc\Response\ResponseSerializer');
     }
 
-    function it_should_serializes_response_with_appropriate_version(Response $response)
+    public function it_should_serializes_response_with_appropriate_version(AbstractResponse $response)
     {
         $response->toArray()->willReturn(['result' => 'some result', 'someprop' => 'somevalue']);
 

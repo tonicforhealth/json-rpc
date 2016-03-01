@@ -2,7 +2,10 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpc\Response;
 
-class SuccessResponse extends Response
+/**
+ * Represents success response.
+ */
+class SuccessResponse extends AbstractResponse
 {
     /**
      * @var mixed

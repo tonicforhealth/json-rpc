@@ -2,6 +2,9 @@
 
 namespace Tonic\Component\ApiLayer\JsonRpc;
 
+/**
+ * Server can handle request and returns response.
+ */
 interface ServerInterface
 {
     /**

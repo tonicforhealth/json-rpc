@@ -3,8 +3,6 @@
 namespace spec\Tonic\Component\ApiLayer\JsonRpc;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-
 use Tonic\Component\ApiLayer\JsonRpc\Exception\Exception;
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodDispatcherInterface;
 use Tonic\Component\ApiLayer\JsonRpc\Request\Request;
@@ -16,26 +14,27 @@ use Tonic\Component\ApiLayer\JsonRpc\Response\ResponseSerializerInterface;
 use Tonic\Component\ApiLayer\JsonRpc\Response\SuccessResponse;
 use Tonic\Component\ApiLayer\JsonRpc\ServerInterface;
 
+/**
+ * @codingStandardsIgnoreStart
+ */
 class ServerSpec extends ObjectBehavior
 {
-    function let(
+    public function let(
         RequestParserInterface $requestParser,
         MethodDispatcherInterface $methodDispatcher,
         ResponseSerializerInterface $responseSerializer,
         ErrorResponseFactory $errorResponseFactory
-    )
-    {
+    ) {
         $this->beAnInstanceOf('Tonic\Component\ApiLayer\JsonRpc\Server');
         $this->beConstructedWith($requestParser, $methodDispatcher, $responseSerializer, $errorResponseFactory);
         $this->shouldImplement(ServerInterface::class);
     }
 
-    function it_should_dispatch_method_with_specified_parameters(
+    public function it_should_dispatch_method_with_specified_parameters(
         RequestParserInterface $requestParser,
         MethodDispatcherInterface $methodDispatcher,
         ResponseSerializerInterface $responseSerializer
-    )
-    {
+    ) {
         $requestParser
             ->parse('{"jsonrpc":"2.0","method":"calculator.calculateProfit","params":{"month":"January"},"id":"calculate-january-profit"}')
             ->willReturn(new Request('2.0', 'calculate-january-profit', 'calculator.calculateProfit', ['month' => 'January']))
@@ -58,13 +57,12 @@ class ServerSpec extends ObjectBehavior
         ;
     }
 
-    function it_should_catch_any_exception_and_convert_it_to_error(
+    public function it_should_catch_any_exception_and_convert_it_to_error(
         RequestParserInterface $requestParser,
         MethodDispatcherInterface $methodDispatcher,
         ResponseSerializerInterface $responseSerializer,
         ErrorResponseFactory $errorResponseFactory
-    )
-    {
+    ) {
         $requestParser
             ->parse('{"jsonrpc":"2.0","method":"calculator.calculateProfit","params":{"month":"January"},"id":"calculate-january-profit"}')
             ->willReturn(new Request('2.0', 'calculate-january-profit', 'calculator.calculateProfit', ['month' => 'January']))
@@ -73,17 +71,17 @@ class ServerSpec extends ObjectBehavior
         $methodDispatcher
             ->dispatch('calculator.calculateProfit', ['month' => 'January'])
             ->will(function () {
-                throw new Exception("test", 32);
+                throw new Exception('test', 32);
             })
         ;
 
         $errorResponseFactory
-            ->createForException(new Exception("test", 32), 'calculate-january-profit')
+            ->createForException(new Exception('test', 32), 'calculate-january-profit')
             ->willReturn(ErrorResponse::applicationDefinedError('calculate-january-profit', 'test', 32))
         ;
 
         $responseSerializer
-            ->serializeResponse('2.0', new ErrorResponse('calculate-january-profit', new Error("test", 32)))
+            ->serializeResponse('2.0', new ErrorResponse('calculate-january-profit', new Error('test', 32)))
             ->willReturn('{"jsonrpc":"2.0","error": {"code": 32, "message": "test"}')
             ->shouldBeCalled()
         ;

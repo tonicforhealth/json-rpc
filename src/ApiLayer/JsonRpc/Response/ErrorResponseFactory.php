@@ -9,6 +9,9 @@ use Tonic\Component\ApiLayer\JsonRpc\Request\Exception\InvalidRequestException;
 use Tonic\Component\ApiLayer\JsonRpc\Request\Exception\ParseException;
 use Tonic\Component\ApiLayer\JsonRpc\Exception\Exception as ApplicationDefinedException;
 
+/**
+ * Factory for error responses.
+ */
 class ErrorResponseFactory
 {
     /**

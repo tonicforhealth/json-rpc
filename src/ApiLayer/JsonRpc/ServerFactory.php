@@ -12,6 +12,9 @@ use Tonic\Component\ApiLayer\JsonRpc\Request\RequestParser;
 use Tonic\Component\ApiLayer\JsonRpc\Response\ErrorResponseFactory;
 use Tonic\Component\ApiLayer\JsonRpc\Response\ResponseSerializer;
 
+/**
+ * Creates preconfigured server instance.
+ */
 class ServerFactory
 {
     /**

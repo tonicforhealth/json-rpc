@@ -4,8 +4,6 @@ namespace spec\Tonic\Component\ApiLayer\JsonRpcExtensions\Security;
 
 use Doctrine\Common\Annotations\Reader;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Tonic\Component\ApiLayer\JsonRpc\Method\MethodInvokerInterface;
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\Annotation\Attribute;
@@ -13,29 +11,30 @@ use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\Exception\AccessDeniedEx
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\UserProviderInterface;
 use Tonic\Component\ApiLayer\JsonRpcExtensions\Security\GuardInterface;
 
+/**
+ * @codingStandardsIgnoreStart
+ */
 class SecurableMethodInvokerSpec extends ObjectBehavior
 {
-    function let(
+    public function let(
         MethodInvokerInterface $methodInvoker,
         UserProviderInterface $userProvider,
         GuardInterface $guard,
         Reader $annotationReader,
         PropertyAccessor $propertyAccessor
-    )
-    {
+    ) {
         $this->beAnInstanceOf('Tonic\Component\ApiLayer\JsonRpcExtensions\Security\Method\SecurableMethodInvoker');
         $this->beConstructedWith($methodInvoker, $userProvider, $guard, $annotationReader, $propertyAccessor);
         $this->shouldImplement(MethodInvokerInterface::class);
     }
 
-    function it_should_allow_method_invocation_if_guard_allows(
+    public function it_should_allow_method_invocation_if_guard_allows(
         MethodInvokerInterface $methodInvoker,
         UserProviderInterface $userProvider,
         GuardInterface $guard,
         Reader $annotationReader,
         PropertyAccessor $propertyAccessor
-    )
-    {
+    ) {
         $securedService = new SecuredAreaApi();
         $requestObject = new \stdClass();
         $requestObject->prop1 = 'asd';
@@ -81,14 +80,13 @@ class SecurableMethodInvokerSpec extends ObjectBehavior
         ;
     }
 
-    function it_should_filter_allowed_attributes(
+    public function it_should_filter_allowed_attributes(
         MethodInvokerInterface $methodInvoker,
         UserProviderInterface $userProvider,
         GuardInterface $guard,
         Reader $annotationReader,
         PropertyAccessor $propertyAccessor
-    )
-    {
+    ) {
         $securedService = new SecuredAreaApi();
         $requestObject = new \stdClass();
         $requestObject->prop1 = 'asd';
@@ -139,14 +137,13 @@ class SecurableMethodInvokerSpec extends ObjectBehavior
         ;
     }
 
-    function it_should_not_invoke_method_if_guard_denies(
+    public function it_should_not_invoke_method_if_guard_denies(
         MethodInvokerInterface $methodInvoker,
         UserProviderInterface $userProvider,
         GuardInterface $guard,
         Reader $annotationReader,
         PropertyAccessor $propertyAccessor
-    )
-    {
+    ) {
         $securedService = new SecuredAreaApi();
         $requestObject = new \stdClass();
         $requestObject->prop1 = 'asd';
