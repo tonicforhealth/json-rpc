@@ -72,10 +72,9 @@ class MetadataExtractor
             $type = $this->determinePropertyType($reflectionProperty);
 
             $isCollection = false;
-            if (($pos = strpos($type, '[')) !== false) {
-                // if type is collection of types
+            if ($extractedType = $this->typeResolver->extractTypeFromCollectionType($type)) {
                 $isCollection = true;
-                $type = substr($type, 0, $pos);
+                $type = $extractedType;
             }
 
             $docBlock = new DocBlock($reflectionProperty);

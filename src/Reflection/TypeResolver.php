@@ -43,7 +43,7 @@ class TypeResolver
         $type = $varTag->getType();
 
         $isCollection = false;
-        if ($extractedType = $this->extractFromCollectionType($type)) {
+        if ($extractedType = $this->extractTypeFromCollectionType($type)) {
             $isCollection = true;
             $type = $extractedType;
         }
@@ -119,7 +119,7 @@ class TypeResolver
         $type = $returnTag->getType();
 
         $isCollection = false;
-        if ($extractedType = $this->extractFromCollectionType($type)) {
+        if ($extractedType = $this->extractTypeFromCollectionType($type)) {
             $isCollection = true;
             $type = $extractedType;
         }
@@ -136,7 +136,7 @@ class TypeResolver
      *
      * @return string|null
      */
-    private function extractFromCollectionType($type)
+    public function extractTypeFromCollectionType($type)
     {
         if (($pos = strpos($type, '[')) !== false) {
             $type = substr($type, 0, $pos);
